@@ -1,0 +1,4 @@
+Things to keep in mind:
+- secure settings.py / local_settings.py
+- model inheritance
+- make migrations and migrate after changing models
