@@ -1,16 +1,16 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.views import generic
 from .models import Question
 
 
-def index(request):
-    latest_questions = Question.objects.order_by('-created')[:5]
-    template = loader.get_template('questions/index.html')
-    context = {
-        'latest_questions': latest_questions,
-    }
-    return HttpResponse(template.render(context, request))
+class IndexView(generic.ListView):
+    template_name = 'questions/index.html'
+    context_object_name = 'latest_questions'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-created')[:5]
 
 
-def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'questions/detail.html'
