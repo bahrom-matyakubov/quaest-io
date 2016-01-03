@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta
 
 
 class Post(models.Model):
@@ -24,6 +26,10 @@ class Tag(models.Model):
 class Question(Post):
     # TODO: Question rating works the same as answer rating?
     tags = models.ManyToManyField(Tag, verbose_name='List of tags')
+
+    def is_recent(self):
+        now = timezone.now()
+        return now - timedelta(days=1) <= self.created <= now
 
 
 class Answer(Post):
