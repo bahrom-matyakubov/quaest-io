@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.views import generic
 from .models import Question
 
@@ -8,7 +9,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-created')[:5]
+        return Question.objects.filter(
+            created__lte=timezone.now()
+        ).order_by('-created')[:5]
 
 
 class DetailView(generic.DetailView):
