@@ -10,8 +10,7 @@ from .models import Question
 class QuestionMethodTests(TestCase):
     def test_is_recent_for_various_created_dates(self):
         """
-        was_published_recently() should return False for questions whose
-        pub_date is in the future.
+        is_recent() should return False for questions created in the future.
         """
         now = timezone.now()
         long_ago = now - datetime.timedelta(days=30)
@@ -37,8 +36,7 @@ class QuestionViewTests(TestCase):
 
     def test_index_view_with_a_past_question(self):
         """
-        Questions with a pub_date in the past should be displayed on the
-        index page.
+        Questions created in the past should be displayed on the index page.
         """
         create_question(content="Past question.", days=-30)
         response = self.client.get(reverse('questions:index'))
@@ -49,8 +47,7 @@ class QuestionViewTests(TestCase):
 
     def test_index_view_with_a_future_question(self):
         """
-        Questions with a pub_date in the future should not be displayed on
-        the index page.
+        Questions created in the future should not be displayed on the index page.
         """
         create_question(content="Future question.", days=30)
         response = self.client.get(reverse('questions:index'))
@@ -82,6 +79,24 @@ class QuestionViewTests(TestCase):
             response.context['latest_questions'],
             ['<Question: Another past question>', '<Question: Past question>']
         )
+
+
+class QuestionDetailTests(TestCase):
+    def test_detail_view_with_a_future_question(self):
+        """
+        The detail view of a question created in the future should return a 404 not found.
+        """
+        future_question = create_question(content='Future question.', days=5)
+        response = self.client.get(reverse('questions:detail', args=(future_question.id,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_detail_view_with_a_past_question(self):
+        """
+        The detail view of a question created in the past should display the question's text.
+        """
+        past_question = create_question(content='Past Question.', days=-5)
+        response = self.client.get(reverse('questions:detail', args=(past_question.id,)))
+        self.assertContains(response, past_question.content, status_code=200)
 
 
 def create_question(content, days):
