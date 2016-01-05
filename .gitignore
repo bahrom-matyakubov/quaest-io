@@ -1,7 +1,7 @@
 qio/
 .idea/
 *__pycache__*
-*settings.py
+*local_settings.py
 *.sqlite3
 *.cache/
 *.coverage
