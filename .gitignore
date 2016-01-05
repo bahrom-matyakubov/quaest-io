@@ -3,3 +3,5 @@ qio/
 *__pycache__*
 *settings.py
 *.sqlite3
+*.cache/
+*.coverage
