@@ -4,6 +4,8 @@ python:
 install:
   - "pip install -r requirements.txt"
 script:
+  - pwd
+  - ls -a
   - py.test ./quaestio/questions/tests.py --cov
 after_success:
   - coveralls
