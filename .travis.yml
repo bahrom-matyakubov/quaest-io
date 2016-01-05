@@ -4,7 +4,6 @@ python:
 install:
   - "pip install -r requirements.txt"
 script:
-  - cd quaestio
   - py.test --cov
 after_success:
   - coveralls
