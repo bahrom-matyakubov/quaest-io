@@ -24,7 +24,7 @@ router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
-    '',
+    # '', # TODO: Why is this here, it breaks tests, but only when running via coverage
     url(r'^api/v1/', include(router.urls)),
     url(r'^questions/', include('questions.urls')),
     url(r'^admin/', admin.site.urls),
