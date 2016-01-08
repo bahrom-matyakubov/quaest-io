@@ -2,6 +2,23 @@ qio/
 .idea/
 *__pycache__*
 *local_settings.py
-*.sqlite3
 *.cache/
 *.coverage
+
+# Python compiled bytecode
+*.pyc
+
+# SQLite3 database
+*.sqlite3
+
+# Node modules
+node_modules/
+
+# Bower components
+/bower_components
+
+# Uglified JavaScript
+dist/
+
+# Staticfiles
+staticfiles/

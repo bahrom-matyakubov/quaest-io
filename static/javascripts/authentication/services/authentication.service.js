@@ -24,7 +24,7 @@
          * @desc The Factory to be returned
          */
         var Authentication = {
-            register: register;
+            register: register
         }
         return Authentication;
 
