@@ -25,7 +25,7 @@
          */
         var Authentication = {
             register: register
-        }
+        };
         return Authentication;
 
         ////////////////
