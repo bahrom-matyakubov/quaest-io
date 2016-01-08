@@ -3,3 +3,16 @@
  */
 angular
   .module('quaestio', []);
+
+(function() {
+    'use strict';
+
+    angular
+        .module('quaestio', [
+            'quaestio.routes',
+            'quaestio.authentication'
+        ]);
+
+    angular
+        .module('quaestio.routes', ['ngRoute']);
+})();
