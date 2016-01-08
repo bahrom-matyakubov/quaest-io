@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="quaestio">
+<head>
+    <title>Quaestio</title>
+
+    <base href="/" />
+
+    {%  include 'stylesheets.html' %}
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs12 ng-view"></div>
+        </div>
+    </div>
+
+    {% include 'javascripts.html' %}
+</body>
+
+</html>

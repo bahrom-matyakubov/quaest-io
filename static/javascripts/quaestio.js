@@ -9,9 +9,13 @@ angular
 
     angular
         .module('quaestio', [
+            'quaestio.config',
             'quaestio.routes',
             'quaestio.authentication'
         ]);
+
+    angular
+        .module('quaestio.config', []);
 
     angular
         .module('quaestio.routes', ['ngRoute']);
